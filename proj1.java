@@ -6,7 +6,7 @@ public final class proj1 {
 	
 	public static void main(String argv[]) throws Exception {
 		// Get the port number from the command line.
-		int port = 7771;
+		int port = 6789;
 
 		// Establish the listen socket.
 		ServerSocket socket = new ServerSocket(port);
@@ -86,7 +86,7 @@ final class HttpRequest implements Runnable {
 
 		// Debug info for private use
 		System.out.println(requestLine);
-		headerLine = null;
+		//headerLine = null;
 		while ((headerLine = br.readLine()).length() != 0) {
 			System.out.println(headerLine);
 		}
