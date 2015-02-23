@@ -147,19 +147,19 @@ final class HttpRequest implements Runnable {
 		if(fileName.endsWith(".htm") || fileName.endsWith(".html")) {
 			return "text/html";
 		}
-		if(fileName.endsWith(".gif")) {
+		else if(fileName.endsWith(".gif")) {
 			return "text/gif";
 		}
-		if(fileName.endsWith(".jpeg")) {
+		else if(fileName.endsWith(".jpeg")) {
 			return "text/jpeg";
 		}
-		if(fileName.endsWith(".png")) {
+		else if(fileName.endsWith(".png")) {
 			return "text/png";
 		}
-		if(fileName.endsWith(".pdf")) {
+		else if(fileName.endsWith(".pdf")) {
 			return "text/pdf";
 		}
-		if(fileName.endsWith(".zip")) {
+		else if(fileName.endsWith(".zip")) {
 			return "text/zip";
 		}
 		return "application/octet-stream" ;
