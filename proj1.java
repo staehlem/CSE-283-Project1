@@ -3,7 +3,7 @@ import java.net.* ;
 import java.util.* ;
 
 public final class proj1 {
-	
+
 	public static void main(String argv[]) throws Exception {
 		// Get the port number from the command line.
 		int port = 6789;
@@ -56,15 +56,15 @@ final class HttpRequest implements Runnable {
 
 		// Get the request line of the HTTP request message.
 		String requestLine = br.readLine();
-		
+
 		// Display the request line of the HTTP request message
 		System.out.println();
 		System.out.println(requestLine);
-		
+
 		// Get and display the header lines.
 		String headerLine = null;
 		while ((headerLine = br.readLine()).length() != 0) {
-		System.out.println(headerLine);
+			System.out.println(headerLine);
 		}
 
 		// Extract the filename from the request line.
@@ -74,7 +74,7 @@ final class HttpRequest implements Runnable {
 
 		// Prepend a "." so that file request is within the current directory.
 		fileName = "." + fileName ;
-
+		
 		// Open the requested file.
 		FileInputStream fis = null ;
 		boolean fileExists = true ;
@@ -88,6 +88,7 @@ final class HttpRequest implements Runnable {
 		System.out.println(requestLine);
 		//headerLine = null;
 		while ((headerLine = br.readLine()).length() != 0) {
+			System.out.println(headerLine.length());
 			System.out.println(headerLine);
 		}
 
@@ -95,9 +96,11 @@ final class HttpRequest implements Runnable {
 		String statusLine = null;
 		String contentTypeLine = null;
 		String entityBody = null;
-
+		
+		System.out.println("I reached line 99");
+		
 		if (fileExists) {
-			statusLine = "OK";
+			statusLine = "HTTP/1.1 200 OK" + CRLF;
 			contentTypeLine = "Content-Type: " + 
 					contentType(fileName) + CRLF;
 		} else {
@@ -117,7 +120,9 @@ final class HttpRequest implements Runnable {
 
 		// Send a blank line to indicate the end of the header lines.
 		os.writeBytes(CRLF);
-
+		
+		System.out.println("I reached: 121");
+		
 		// Send the entity body.
 		if (fileExists) {
 			sendBytes(fis, os);
@@ -126,6 +131,8 @@ final class HttpRequest implements Runnable {
 			os.writeBytes(entityBody) ;
 		}
 
+		System.out.println("I reached: 131");
+		
 		// Close streams and socket.
 		os.close();
 		br.close();
@@ -136,11 +143,15 @@ final class HttpRequest implements Runnable {
 		// Construct a 1K buffer to hold bytes on their way to the socket.
 		byte[] buffer = new byte[1024];
 		int bytes = 0;
-
+		
+		System.out.println("I work");
+		
 		// Copy requested file into the socket's output stream.
 		while ((bytes = fis.read(buffer)) != -1) {
 			os.write(buffer, 0, bytes);
 		}
+		
+		System.out.println("reached end of loop line 147");
 	}
 
 	private String contentType(String fileName) {
@@ -165,4 +176,3 @@ final class HttpRequest implements Runnable {
 		return "application/octet-stream" ;
 	}
 }
-	
