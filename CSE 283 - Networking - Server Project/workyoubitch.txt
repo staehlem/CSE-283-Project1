@@ -1,0 +1,9 @@
+This is a test file in txt format
+this is a line represented by a string
+
+Erich Staehling
+
+"\r\n"
+Miami University
+
+Hopefully I worked........
